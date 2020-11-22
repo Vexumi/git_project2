@@ -32,7 +32,7 @@ class Main(QWidget):
         self.repaint()
 
     def draw(self, qp):
-        qp.setBrush(QColor(255, 179, 0))
+        qp.setBrush(QColor(rd.randint(0, 255), rd.randint(0, 255), rd.randint(0, 255)))
         size = rd.randint(10, 100)
         x = rd.randint(10, 530)
         y = rd.randint(10, 570)
