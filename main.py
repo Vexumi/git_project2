@@ -3,23 +3,38 @@ import random as rd
 from PyQt5.QtCore import Qt
 from PyQt5 import uic
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
-from PyQt5.QtWidgets import QLCDNumber, QLabel, QLineEdit, QCheckBox
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLCDNumber, QLabel, QLineEdit, \
+    QCheckBox
 from PyQt5.QtGui import QPainter, QColor, QPolygonF, QPainterPath
-from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtCore import QPoint
 
 
-class Main(QWidget):
+class Ui_Form(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(550, 590)
+        self.pushButton = QtWidgets.QPushButton(Form)
+        self.pushButton.setGeometry(QtCore.QRect(200, 527, 141, 41))
+        self.pushButton.setObjectName("pushButton")
+
+        self.retranslateUi(Form)
+        QtCore.QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QtCore.QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Form"))
+        self.pushButton.setText(_translate("Form", "Paint"))
+
+
+class Main(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
+        self.setupUi(self)
         self.initUI()
 
     def initUI(self):
-        uic.loadUi("UI.ui", self)
-
         self.pushButton.clicked.connect(self.paint)
-        self.setWindowTitle('Yellow circles')
+        self.setWindowTitle('Random circles')
         self.show()
 
     def paintEvent(self, event):
